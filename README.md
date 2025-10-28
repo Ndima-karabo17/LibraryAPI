@@ -3,7 +3,7 @@
 A RESTful API built with TypeScript + Express.js that manages a community library’s Authors and Books.
 This API supports CRUD operations, validation, error handling, and logging, enabling librarians to 
 efficiently manage book and author records.
--
+
 | Feature                     | Description              |
 | --------------------------- | ------------------------ |
 | **Create New Author**       | `POST /authors`          |
