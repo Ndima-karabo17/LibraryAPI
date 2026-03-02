@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "start": "ts-node src/server.ts",
-    "dev": "nodemon --exec ts-node src/server"
+    "dev": "nodemon --exec tsx src/server.ts",
+    "start": "tsx src/server.ts"
   },
   "keywords": [],
   "author": "",
@@ -17,7 +17,10 @@
   "devDependencies": {
     "@types/express": "^5.0.5",
     "@types/node": "^24.9.1",
+    "nodemon": "^3.1.14",
+    "ts-node": "^10.9.2",
     "ts-node-dev": "^2.0.0",
+    "tsx": "^4.21.0",
     "typescript": "^5.9.3"
   }
 }

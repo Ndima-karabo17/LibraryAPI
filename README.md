@@ -18,32 +18,48 @@ efficiently manage book and author records.
 | **Update Book**             | `PUT /books/:id`         |
 | **Delete Book**             | `DELETE /books/:id`      |
 
-More features
--
+## Additional Capabilities
+
 Query parameters for filtering, sorting, and pagination
-
 Validation middleware for request payloads
-
 Centralized error handling
+Logger middleware to track incoming requests
 
-Logger middleware to track requests
 
-Tech Stack
+## Tech Stack
+
+Runtime: Node.js
+Language: TypeScript
+Dev Tools: Nodemon, tsx
+
+
+## Getting Started
+Prerequisites
 -
-Node.js
 
-Express.js
+Node.js (v18+)
+npm
+VS Code (recommended)
 
-TypeScript
+## Installation
 
-Nodemon (development)
+- npm install
+- npm install express-validator
 
-How to run and install dependencies
--
-npm install
-npm install express-validator
 
-npm run run dev
+## Running the Server
+- Development (with auto-reload)
+- npm run dev
 
-Using VS code
+# Production
+npm start
 
+## Example Requests
+
+- Create a new author:
+powershell$body = '{"name":"George Orwell","nationality":"British"}'
+curl.exe -X POST http://localhost:3000/authors -H "Content-Type: application/json" -d $body
+- Get all books:
+powershellcurl.exe http://localhost:3000/books
+- Delete a book:
+powershellcurl.exe -X DELETE http://localhost:3000/books/1
