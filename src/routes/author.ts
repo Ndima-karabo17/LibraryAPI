@@ -1,32 +1,52 @@
 import { Router, Request, Response } from "express";
-import {body, param, validationResult} from 'express-validator'
+import { body, param, validationResult } from 'express-validator';
 import { createBook, getAllBooks, getBookById } from "../controllers/authors";
 
-const router = Router()
+const router = Router();
 
+//* Route: GET all books
 router.get("/", getAllBooks);
 
-router.get('/:id', [param("id").isInt().withMessage("ID must be an integer")],
-(req:Request, res:Response) =>{
+//* Route: GET a single book by ID with validation
+router.get(
+  '/:id', 
+  [
+    //! Validate that ID is an integer
+    param("id").isInt().withMessage("ID must be an integer")
+  ],
+  (req: Request, res: Response) => {
     const errors = validationResult(req);
 
-    if(!errors.isEmpty()){
-        return res.status(400).json({errors: errors.array()})
+    //? Return 400 if validation fails
+    if (!errors.isEmpty()) {
+      return res.status(400).json({ errors: errors.array() });
     }
-    getBookById(req,res);
-}
+
+    //? Call controller to get book by ID
+    getBookById(req, res);
+  }
 );
 
-router.post('/',[
-    body('AuthorName').notEmpty().withMessage('Author name is required'),
-    body('title').notEmpty().withMessage('Every book have a title'),
-    body.apply('year').isInt().withMessage('A book must have a released year which is digits'),
-
-],(req:Request, res:Response)=>{
+//? Route: POST a new book with body validation
+router.post(
+  '/',
+  [
+    //? Validate required fields
+    body('authorName').notEmpty().withMessage('Author name is required'),
+    body('title').notEmpty().withMessage('Every book must have a title'),
+    body('year').isInt().withMessage('Year must be a valid integer')
+  ],
+  (req: Request, res: Response) => {
     const errors = validationResult(req);
-    if(!errors.isEmpty()){
-        return res.status(400).json({errors: errors.array()})
+
+    //! Return 400 if validation fails
+    if (!errors.isEmpty()) {
+      return res.status(400).json({ errors: errors.array() });
     }
+
+    //? Call controller to create a new book
     createBook(req, res);
-})
-export default router
+  }
+);
+
+export default router;
