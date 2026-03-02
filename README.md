@@ -38,9 +38,10 @@ TypeScript
 
 Nodemon (development)
 
-How to run and dependencies
+How to run and install dependencies
 -
 npm install
+npm install express-validator
 
 npm run run dev
 
